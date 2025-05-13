@@ -1,6 +1,7 @@
 const express = require("express")
 const bodyParser = require('body-parser')
 const cors = require('cors')
+const serverless = require('serverless-http');
 
 const port = 3000
 const app = express()
@@ -29,3 +30,6 @@ app.post('/ussd', (req, res) => {
 app.listen(port,() => {
     console.log(`USSD running on port ${port}`);
 })
+
+module.exports = app
+module.exports.handler = serverless(app)
